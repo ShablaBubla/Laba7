@@ -22,10 +22,14 @@ public class Update extends PrimeCommand {
             Insert insert = new Insert();
             if(runner.getInputStream().getClass().getCanonicalName().equals("java.io.FileInputStream")){
                 newProduct = insert.enterProductFromFile(runner.getScanner());
+                newProduct.setCreatorName(runner.getClientName());
+                newProduct.setCreatorID(runner.getCliendID());
                 request.setNewProduct(newProduct);
             }
             else {
                 newProduct = insert.enterProduct();
+                newProduct.setCreatorName(runner.getClientName());
+                newProduct.setCreatorID(runner.getCliendID());
                 request.setNewProduct(newProduct);
             }
         }catch(NullPointerException e){

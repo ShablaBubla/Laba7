@@ -69,15 +69,15 @@ public class Client {
     }
 
     private byte[] receiveData(int bufferSize) throws IOException {
-//        Selector selector = SelectorProvider.provider().openSelector();
-//        client.register(selector, SelectionKey.OP_READ);
+        Selector selector = SelectorProvider.provider().openSelector();
+        client.register(selector, SelectionKey.OP_READ);
 
         ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
         SocketAddress address = null;
-//        int timeout = 5000;
-//        if(selector.select(timeout) == 0){
-//            throw new TimeOut();
-//        }
+        int timeout = 5000;
+        if(selector.select(timeout) == 0){
+            throw new TimeOut();
+        }
         while(address == null) {
             address = client.receive(buffer);
         }

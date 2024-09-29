@@ -17,5 +17,6 @@ public class Request implements Serializable {
     public Request(String cmd, String args, int userID){
         this.cmd = cmd;
         this.args = args;
+        this.userID = userID;
     }
 }

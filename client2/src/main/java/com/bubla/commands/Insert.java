@@ -25,10 +25,14 @@ public class Insert extends PrimeCommand {
         try{
             if(runner.getInputStream().getClass().getCanonicalName().equals("java.io.FileInputStream")){
                 prod = this.enterProductFromFile(runner.getScanner());
+                prod.setCreatorName(runner.getClientName());
+                prod.setCreatorID(runner.getCliendID());
                 request.setNewProduct(prod);
             }
             else {
                 prod = this.enterProduct();
+                prod.setCreatorName(runner.getClientName());
+                prod.setCreatorID(runner.getCliendID());
                 request.setNewProduct(prod);
             }
         }

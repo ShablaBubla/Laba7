@@ -16,9 +16,15 @@ public class Runner {
     private Scanner scanner;
     private Stack<String> cmdStack = new Stack<>();
     private Client client;
+    private String clientName;
+    private int cliendID;
 
     public Runner(InputStream inputStream) throws IOException {
         this.inputStream = inputStream;
+        this.client = new Client(InetAddress.getLocalHost(), 3412);
+    }
+
+    public Runner() throws IOException {
         this.client = new Client(InetAddress.getLocalHost(), 3412);
     }
 

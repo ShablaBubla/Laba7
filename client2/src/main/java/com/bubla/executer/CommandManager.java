@@ -30,10 +30,10 @@ public class CommandManager {
     private boolean isCmd;
     private boolean isAvailable = true;
 
-    public CommandManager() throws IOException {
+    public CommandManager(Runner runner) throws IOException {
         this.linkedHashMapOfProducts = new LinkedHashMapOfProducts();
         this.response = new Response("");
-        this.runner = new Runner(System.in);
+        this.runner = runner;
         this.executer = new Executer();
     }
 
@@ -64,7 +64,7 @@ public class CommandManager {
                 this.cmd = "";
                 this.arg = "";
             }
-            request = new Request(this.cmd, this.arg);
+            request = new Request(this.cmd, this.arg, runner.getCliendID());
             this.executer.accomplish(this.request, this.runner);
 
             client = runner.getClient();
@@ -80,7 +80,7 @@ public class CommandManager {
             while (!isAvailable){
                 try{
                     client = runner.getClient();
-                    msg = SerializationUtils.serialize(new Request(null, null));
+                    msg = SerializationUtils.serialize(new Request(null, null, runner.getCliendID()));
                     msg = client.sendAndReceiveData(msg);
                     this.response = SerializationUtils.deserialize(msg);
                     System.out.print(response.getResponse());

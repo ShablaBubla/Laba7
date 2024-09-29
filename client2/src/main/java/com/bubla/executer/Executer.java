@@ -22,12 +22,6 @@ public class Executer {
         commandsList.put("update", new Update());
     }
 
-    /** Выполнение команды
-     *
-     * @param cmd команда
-     * @param args аргумент команды
-     * @param application приложение
-     */
     public void accomplish(Request request, Runner runner) {
         PrimeCommand command = this.commandsList.get(request.getCmd());
         try {

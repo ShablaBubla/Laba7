@@ -23,10 +23,14 @@ public class ReplaceIfLowe extends PrimeCommand {
             Insert insert = new Insert();
             if(runner.getInputStream().getClass().getCanonicalName().equals("java.io.FileInputStream")){
                 prod = insert.enterProductFromFile(runner.getScanner());
+                prod.setCreatorName(runner.getClientName());
+                prod.setCreatorID(runner.getCliendID());
                 request.setNewProduct(prod);
             }
             else {
                 prod = insert.enterProduct();
+                prod.setCreatorName(runner.getClientName());
+                prod.setCreatorID(runner.getCliendID());
                 request.setNewProduct(prod);
             }
         }

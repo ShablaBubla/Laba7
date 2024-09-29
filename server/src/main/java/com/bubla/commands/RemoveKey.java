@@ -1,6 +1,7 @@
 package com.bubla.commands;
 
 import com.bubla.Application;
+import com.bubla.classes.Product;
 import com.bubla.database_managment.DataBaseManager;
 import com.bubla.executer.ServerApplication;
 
@@ -21,6 +22,11 @@ public class RemoveKey extends PrimeCommand {
     @Override
     public String execute(String args, ServerApplication application){
         try {
+            Product oldProduct = application.getProducts().getProducts().get(args);
+
+            if(oldProduct.getCreatorID() != application.getUserID()){
+                return "В доступе отказано";
+            }
             DataBaseManager dataBaseManager = new DataBaseManager();
             dataBaseManager.remove(application.getProducts().getProducts().get(args));
             application.getProducts().remove(args);
